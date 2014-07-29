@@ -18,18 +18,37 @@
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
 @import "bootstrap";
-/* Some Style from the Bootstrap Default Theme */
 body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+  background: rgb(194,226,239); /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(194,226,239,1) 0%, rgba(140,202,226,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(194,226,239,1)), color-stop(100%,rgba(140,202,226,1))); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(194,226,239,1) 0%,rgba(140,202,226,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover,  rgba(194,226,239,1) 0%,rgba(140,202,226,1) 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover,  rgba(194,226,239,1) 0%,rgba(140,202,226,1) 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center,  rgba(194,226,239,1) 0%,rgba(140,202,226,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2e2ef', endColorstr='#8ccae2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
+#title {
+  margin-top: 130px;
   margin-bottom: 20px;
 }
 
-.theme-showcase > p > .btn {
-  margin: 5px 0;
+#sunset {
+  border:10px solid white;
+  border-radius: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

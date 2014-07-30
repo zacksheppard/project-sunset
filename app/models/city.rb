@@ -1,7 +1,6 @@
 class City < ActiveRecord::Base
     require 'open-uri'
     require 'json'
-    require 'pry'
     def self.generate_cities
         count = 0
         File.open("city_seed_data.txt").each do |line|

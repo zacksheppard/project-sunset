@@ -3,8 +3,8 @@ class AddColumnsToCities < ActiveRecord::Migration
     add_column :cities, :dst_offset, :integer
     add_column :cities, :raw_offset, :integer
     add_column :cities, :total_offset, :integer
-    add_column :cities, :timezone, :integer
-    add_column :cities, :sunset_utc, :datetime
+    add_column :cities, :timezone, :string
+    add_column :cities, :sunset_utc, :integer
 
   end
 end

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    
+    @photo = Photo.new([["39.099722","-94.578333"],["39.099722","-94.578333"]])
   end
 
 end

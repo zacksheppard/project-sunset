@@ -12,7 +12,7 @@ class Photo
   def sunset_by_lat_lon
     lat, lon = get_lat_long[0],get_lat_long[1]
     source = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ec7bc063e59faf82689e51120e618d2d&tags=sunset&sort=interestingness-desc&lat=#{lat}&lon=#{lon}&format=json&nojsoncallback=1"
-
+    binding.pry
     data = JSON.load(open(source))
 
     farm_id = data["photos"]["photo"][0]["farm"]

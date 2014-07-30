@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    @photo = Photo.new([["39.099722","-94.578333"],["39.099722","-94.578333"]])
+    lat_long_list = City.currently_sunset
+    @photo = Photo.new(lat_long_list)
   end
 
 end

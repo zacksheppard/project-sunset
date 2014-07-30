@@ -48,7 +48,7 @@ class City < ActiveRecord::Base
 
 
     def self.get_sunset_times
-        t = Time.now
+        t = Time.now.utc
         self.biggest_cities.each do |city|
             
             puts "getting data for #{city.name}"
@@ -58,9 +58,9 @@ class City < ActiveRecord::Base
             #"sunset"=>{"hour"=>"21", "minute"=>"16"}
             sunset = @data["sun_phase"]["sunset"]
             puts "sunset is #{sunset}"
-            sunset_local_time = Time.new(t.year, t.month, t.day, sunset["hour"], sunset["minute"])
+            sunset_raw_utc = Time.utc(t.year, t.month, t.day, sunset["hour"], sunset["minute"])
             if city.total_offset
-                city.sunset_utc = sunset_local_time.to_i + city.total_offset
+                city.sunset_utc = sunset_raw_utc.to_i - city.total_offset
                 puts "converted to: #{city.sunset_utc}"
             else
                 puts "error"
@@ -69,6 +69,19 @@ class City < ActiveRecord::Base
             puts "done"
 
         end
+    end
+
+    def self.currently_sunset
+        now = Time.now.to_i
+        soon = Time.now.to_i + (60*20) #add twenty minutes from now in seconds
+
+        sunset_cities = []
+        self.biggest_cities.each do |city|
+            if city.sunset_utc && city.sunset_utc < soon && city.sunset_utc >= now
+                sunset_cities << [city.latitude, city.longitude, city.name]
+            end
+        end
+        return sunset_cities
     end
 
 

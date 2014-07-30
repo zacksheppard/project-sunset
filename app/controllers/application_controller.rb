@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    long_lat = City.currently_sunset
-    @photo = Photo.new(long_lat)
+    lat_long_list = City.currently_sunset
+    @photo = Photo.new(lat_long_list)
   end
 
 end

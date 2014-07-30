@@ -2,24 +2,28 @@ class City < ActiveRecord::Base
     require 'open-uri'
     require 'json'
     def self.generate_cities
+        count = 0
         File.open("city_seed_data.txt").each do |line|
             # puts line.inspect
             # line.encode!('UTF-8', :undef => :replace, :invalid => :replace, :replace => "")
             row = line.strip.split(",")
             # puts row.inspect
             # if row[1] != "" && row[4] != "" && row[4] != "0.0"
-            city = City.new
-            city.tap do |c|
-                c.name = row[0]
-                c.population = row[1]
-                c.latitude = row[2]
-                c.longitude = row[3]
-                c.dst_offset = row[4]
-                c.raw_offset = row[5]
-                c.total_offset = row[6]
-                c.timezone = row[7]
-                c.sunset_utc = row[8]
-                c.save
+            unless count == 0
+                city = City.new
+                city.tap do |c|
+                    c.name = row[0]
+                    c.population = row[1]
+                    c.latitude = row[2]
+                    c.longitude = row[3]
+                    c.dst_offset = row[4]
+                    c.raw_offset = row[5]
+                    c.total_offset = row[6]
+                    c.timezone = row[7]
+                    c.sunset_utc = row[8]
+                    c.save
+                end
+                count += 1
             end
             # end
 

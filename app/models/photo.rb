@@ -24,7 +24,6 @@ class Photo
   end
 
   def get_lat_long
-
     list_of_lon_lat.sample
   end
 

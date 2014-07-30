@@ -46,9 +46,11 @@ class City < ActiveRecord::Base
     end
 
 
+
     def self.get_sunset_times
         t = Time.now
         self.biggest_cities.each do |city|
+            
             puts "getting data for #{city.name}"
             url = "http://api.wunderground.com/api/a112e57999a31e49/astronomy/q/#{city.latitude},#{city.longitude}.json"
             @data = JSON.load(open(url))

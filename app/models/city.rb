@@ -2,28 +2,41 @@ class City < ActiveRecord::Base
     require 'open-uri'
     require 'json'
     def self.generate_cities
-        i =0
-        File.open("worldcitiespop.txt").each do |line|
-            puts line.inspect
-            line.encode!('UTF-8', :undef => :replace, :invalid => :replace, :replace => "")
+        File.open("city_seed_data.txt").each do |line|
+            # puts line.inspect
+            # line.encode!('UTF-8', :undef => :replace, :invalid => :replace, :replace => "")
             row = line.strip.split(",")
-            puts row.inspect
-            if row[1] != "" && row[4] != "" && row[4] != "0.0"
-                city = City.new
-                city.tap do |c|
-                    c.name = row[1]
-                    c.population = row[4]
-                    c.latitude = row[5]
-                    c.longitude = row[6]
-                    c.save
-                end
+            # puts row.inspect
+            # if row[1] != "" && row[4] != "" && row[4] != "0.0"
+            city = City.new
+            city.tap do |c|
+                c.name = row[0]
+                c.population = row[1]
+                c.latitude = row[2]
+                c.longitude = row[3]
+                c.dst_offset = row[4]
+                c.raw_offset = row[5]
+                c.total_offset = row[6]
+                c.timezone = row[7]
+                c.sunset_utc = row[8]
+                c.save
             end
+            # end
 
         end
     end
 
     def self.biggest_cities
         City.order(population: :desc).limit(1000)
+    end
+
+
+    def self.print_cities_for_seed_data
+        self.biggest_cities.each do |city|
+            if city.sunset_utc
+                puts "#{city.name},#{city.population},#{city.latitude},#{city.longitude},#{city.dst_offset},#{city.raw_offset},#{city.total_offset},#{city.timezone},#{city.sunset_utc}"
+            end
+        end
     end
 
     def self.get_timezones

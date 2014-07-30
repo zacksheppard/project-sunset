@@ -7,6 +7,7 @@ class City < ActiveRecord::Base
             puts line.inspect
             line.encode!('UTF-8', :undef => :replace, :invalid => :replace, :replace => "")
             row = line.strip.split(",")
+            binding.pry
             puts row.inspect
             if row[1] != "" && row[4] != "" && row[4] != "0.0"
                 city = City.new

@@ -1,13 +1,15 @@
 class City < ActiveRecord::Base
     require 'open-uri'
     require 'json'
+    require 'pry'
     def self.generate_cities
         count = 0
         File.open("city_seed_data.txt").each do |line|
             # puts line.inspect
             # line.encode!('UTF-8', :undef => :replace, :invalid => :replace, :replace => "")
             row = line.strip.split(",")
-            # puts row.inspect
+            # binding.pry
+            puts row.inspect
             # if row[1] != "" && row[4] != "" && row[4] != "0.0"
             unless count == 0
                 city = City.new
@@ -23,9 +25,9 @@ class City < ActiveRecord::Base
                     c.sunset_utc = row[8]
                     c.save
                 end
-                count += 1
             end
             # end
+            count += 1
 
         end
     end

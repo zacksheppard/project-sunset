@@ -14,3 +14,7 @@ namespace :db do
       City.generate_cities
   end
 end
+
+task :update_sunset_time do
+  City.get_sunset_times
+end

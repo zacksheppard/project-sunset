@@ -18,9 +18,9 @@ class Photo
       "https://farm4.staticflickr.com/3846/14796102872_8d34287bf2_b.jpg"
     else
       coordinates = self.get_lat_long
-      lat, lon = coordinates[0],coordinates[1]
+      @lat, @lon = coordinates[0],coordinates[1]
       @location = coordinates[2]
-      source = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2a442fa279df310b1668df5f144c8f83&tags=sunset&sort=interestingness-desc&safe_search=1&lat=#{lat}&lon=#{lon}&radius=32&radius_units=km&format=json&nojsoncallback=1&extras=path_alias%2Cowner_name"
+      source = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2a442fa279df310b1668df5f144c8f83&tags=sunset&sort=interestingness-desc&safe_search=1&lat=#{@lat}&lon=#{@lon}&radius=32&radius_units=km&format=json&nojsoncallback=1&extras=path_alias%2Cowner_name"
       data = JSON.load(open(source))
       
       if data["photos"]["photo"].empty? || 2 > data["photos"]["photo"].count || index = nil
@@ -42,7 +42,7 @@ class Photo
       @author = data["photos"]["photo"][index]["ownername"]
 
       "http://farm#{farm_id}.staticflickr.com/#{server_id}/#{id}_#{secret}_b.jpg"
-  end
+    end
   end
 
   def get_lat_long
@@ -59,6 +59,14 @@ class Photo
 
   def photo_url
     @photo_url
+  end
+
+  def latitude
+    @lat
+  end
+
+  def longitude
+    @lon
   end
 
 end

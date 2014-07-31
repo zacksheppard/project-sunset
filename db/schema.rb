@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731154800) do
+ActiveRecord::Schema.define(version: 20140731182812) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140731154800) do
     t.integer  "sunset_utc"
     t.integer  "sunset_hour"
     t.integer  "sunset_min"
+    t.datetime "last_time_updated"
   end
 
 end

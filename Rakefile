@@ -9,6 +9,8 @@ task :gen_seed_data => :environment do
     City.print_cities_for_seed_data
 end
 
-task :add_data_to_db => :environment do
-    City.generate_cities
+namespace :db do
+  task :add_data => :environment do
+      City.generate_cities
+  end
 end

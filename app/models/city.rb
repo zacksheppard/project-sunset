@@ -12,6 +12,8 @@ class City < ActiveRecord::Base
             # if row[1] != "" && row[4] != "" && row[4] != "0.0"
             unless count == 0
                 city = City.new
+                seed_time = Time.now
+
                 city.tap do |c|
                     c.name = row[0]
                     c.population = row[1]
@@ -24,6 +26,7 @@ class City < ActiveRecord::Base
                     c.sunset_utc = row[8]
                     c.sunset_hour = row[9]
                     c.sunset_min = row[10]
+                    c.last_time_updated = seed_time
                     c.save
                 end
             end
@@ -47,7 +50,7 @@ class City < ActiveRecord::Base
     end
 
     def self.get_timezones
-        date = Time.now.to_i
+        date = Time.now.to_s
         self.biggest_cities.each do |city|
             url = "https://maps.googleapis.com/maps/api/timezone/json?location=#{city.latitude},#{city.longitude}&timestamp=#{date}&key=AIzaSyBKiF69WTPFEm5_GO7UBahxww1S9psankk"
             @data = JSON.load(open(url))
@@ -68,7 +71,7 @@ class City < ActiveRecord::Base
 
 
     def self.get_sunset_times
-        t = Time.now.utc
+        time_of_api_request = Time.now.to_i
         self.biggest_cities.each do |city|
             puts "getting data for #{city.name}"
             url = "http://api.wunderground.com/api/a112e57999a31e49/astronomy/q/#{city.latitude},#{city.longitude}.json"
@@ -83,6 +86,8 @@ class City < ActiveRecord::Base
             city.sunset_utc = self.sunset_time_to_seconds(sunset["hour"].to_i, sunset["minute"].to_i, city.total_offset)
 
             puts "#{city.sunset_utc}"
+
+            city.last_time_updated = time_of_api_request
             city.save
 
         end
@@ -113,5 +118,37 @@ class City < ActiveRecord::Base
         return sunset_cities
     end
 
+    def self.cities_to_update
+        # where cities current time - last time updated > 4 days limit to 250
+        # City.city[:last_time_updated].not_in(4.days.ago..Time.current).limit(250)
+        # city[:last_time_updated => 4.days.ago..Time.current]
+        where.not(:last_time_updated => (4.days.ago..Time.current))
+        # result = city[:last_time_updated].not_in(4.days.ago..Time.current)
+        # where(result).limit(250)
+        # order('last_time_updated ASC').limit(250)
+
+
+    end
+
+    def self.city
+        self.arel_table
+    end
+
+    private_class_method :city
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

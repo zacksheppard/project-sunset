@@ -22,6 +22,8 @@ class City < ActiveRecord::Base
                     c.total_offset = row[6]
                     c.timezone = row[7]
                     c.sunset_utc = row[8]
+                    c.sunset_hour = row[9]
+                    c.sunset_min = row[10]
                     c.save
                 end
             end
@@ -39,7 +41,7 @@ class City < ActiveRecord::Base
     def self.print_cities_for_seed_data
         self.biggest_cities.each do |city|
             if city.sunset_utc
-                puts "#{city.name},#{city.population},#{city.latitude},#{city.longitude},#{city.dst_offset},#{city.raw_offset},#{city.total_offset},#{city.timezone},#{city.sunset_utc}"
+                puts "#{city.name},#{city.population},#{city.latitude},#{city.longitude},#{city.dst_offset},#{city.raw_offset},#{city.total_offset},#{city.timezone},#{city.sunset_utc},#{city.sunset_hour},#{city.sunset_min}"
             end
         end
     end
@@ -68,33 +70,25 @@ class City < ActiveRecord::Base
     def self.get_sunset_times
         t = Time.now.utc
         self.biggest_cities.each do |city|
-            
             puts "getting data for #{city.name}"
             url = "http://api.wunderground.com/api/a112e57999a31e49/astronomy/q/#{city.latitude},#{city.longitude}.json"
             @data = JSON.load(open(url))
             
             #"sunset"=>{"hour"=>"21", "minute"=>"16"}
             sunset = @data["sun_phase"]["sunset"]
+            city.sunset_hour = sunset["hour"].to_i
+            city.sunset_min = sunset["minute"].to_i
 
-            city.sunset_utc = sunset_time_to_seconds(sunset["hour"].to_i, sunset["minute"].to_i, city.total_offset)
+
+            city.sunset_utc = self.sunset_time_to_seconds(sunset["hour"].to_i, sunset["minute"].to_i, city.total_offset)
+
+            puts "#{city.sunset_utc}"
             city.save
 
-            # puts "sunset is #{sunset}"
-            # sunset_raw_utc = Time.utc(t.year, t.month, t.day, sunset["hour"], sunset["minute"])
-            # binding.pry
-            # if city.total_offset
-            #     city.sunset_utc = sunset_raw_utc.to_i - city.total_offset
-            #     puts "converted to: #{city.sunset_utc}"
-            # else
-            #     puts "error"
-            # end
-            # city.save
-            # puts "done"
-            # Time.now.strftime('%I:%M')
         end
     end
 
-    def sunset_time_to_seconds(hours, minutes, offset)
+    def self.sunset_time_to_seconds(hours, minutes, offset)
         seconds = (hours*60*60 + minutes*60) - offset
         if seconds < 0
             seconds += 86400
@@ -105,10 +99,10 @@ class City < ActiveRecord::Base
     end
 
     def self.currently_sunset
-        now = Time.now.utc.to_i
-        soon = Time.now.utc.to_i + (60*20) #add twenty minutes from now in seconds
-        seconds_now = sunset_time_to_seconds(now.hour, now.minute, 0)
-        seconds_soon = sunset_time_to_seconds(soon.hour, soon.minute, 0)
+        now = Time.now.utc
+        soon = Time.now.utc + (60*20) #add twenty minutes from now in seconds
+        seconds_now = self.sunset_time_to_seconds(now.hour, now.min, 0)
+        seconds_soon = self.sunset_time_to_seconds(soon.hour, soon.min, 0)
 
         sunset_cities = []
         self.biggest_cities.each do |city|

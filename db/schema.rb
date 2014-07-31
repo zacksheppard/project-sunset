@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730163543) do
+ActiveRecord::Schema.define(version: 20140731154800) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20140730163543) do
     t.integer  "total_offset"
     t.string   "timezone"
     t.integer  "sunset_utc"
+    t.integer  "sunset_hour"
+    t.integer  "sunset_min"
   end
 
 end

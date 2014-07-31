@@ -90,6 +90,9 @@ class City < ActiveRecord::Base
 
             city.last_time_updated = time_of_api_request
             city.save
+            
+            # make sure wunderground weather API limit of 10 database queries per minute is not exceeded
+            sleep 7
 
         end
     end
@@ -120,7 +123,7 @@ class City < ActiveRecord::Base
     end
 
     def self.cities_to_update
-        where.not(:last_time_updated => (4.days.ago..Time.current))
+        where.not(:last_time_updated => (4.days.ago..Time.current)).limit(250)
     end
 
 end

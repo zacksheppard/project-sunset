@@ -2,8 +2,10 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <h1 id="title">The sun is currently setting in...</h1>
-      <img id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>">
-      <p class="text-right">Purty sunset by Jesse Jackson</p>
+      <figure>
+          <img id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>">
+          <figcaption><p class="text-left"><%= @photo.location.titleize %><p><p class="text-right">by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a></p></figcaption>
+     </figure>
     </div>
   </div>
 </div>

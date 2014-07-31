@@ -9,10 +9,11 @@ class City < ActiveRecord::Base
             row = line.strip.split(",")
             # binding.pry
             puts row.inspect
+            seed_time = Time.now
             # if row[1] != "" && row[4] != "" && row[4] != "0.0"
             unless count == 0
                 city = City.new
-                seed_time = Time.now
+                
 
                 city.tap do |c|
                     c.name = row[0]
@@ -71,8 +72,8 @@ class City < ActiveRecord::Base
 
 
     def self.get_sunset_times
-        time_of_api_request = Time.now.to_i
-        self.biggest_cities.each do |city|
+        time_of_api_request = Time.now
+        self.cities_to_update.each do |city|
             puts "getting data for #{city.name}"
             url = "http://api.wunderground.com/api/a112e57999a31e49/astronomy/q/#{city.latitude},#{city.longitude}.json"
             @data = JSON.load(open(url))
@@ -119,36 +120,7 @@ class City < ActiveRecord::Base
     end
 
     def self.cities_to_update
-        # where cities current time - last time updated > 4 days limit to 250
-        # City.city[:last_time_updated].not_in(4.days.ago..Time.current).limit(250)
-        # city[:last_time_updated => 4.days.ago..Time.current]
         where.not(:last_time_updated => (4.days.ago..Time.current))
-        # result = city[:last_time_updated].not_in(4.days.ago..Time.current)
-        # where(result).limit(250)
-        # order('last_time_updated ASC').limit(250)
-
-
     end
-
-    def self.city
-        self.arel_table
-    end
-
-    private_class_method :city
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

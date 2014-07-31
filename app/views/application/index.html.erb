@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <h1 id="title">The sun is currently setting in...</h1>
       <figure>
-          <img id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>">
+        <input type="image"  id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>" onClick="window.location.reload()">
           <figcaption><p id="toggle-map" class="text-left"><%= @photo.location.titleize %><p><p class="text-right">by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a></p></figcaption>
      </figure>
     </div>

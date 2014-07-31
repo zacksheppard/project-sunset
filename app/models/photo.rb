@@ -11,9 +11,9 @@ class Photo
 
   def sunset_by_lat_lon
     coordinates = self.get_lat_long
-    lat, lon = coordinates[0],coordinates[1]
+    @lat, @lon = coordinates[0],coordinates[1]
     @location = coordinates[2]
-    source = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ec7bc063e59faf82689e51120e618d2d&tags=sunset&sort=interestingness-desc&lat=#{lat}&lon=#{lon}&format=json&nojsoncallback=1&extras=path_alias%2Cowner_name"
+    source = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ec7bc063e59faf82689e51120e618d2d&tags=sunset&sort=interestingness-desc&lat=#{@lat}&lon=#{@lon}&format=json&nojsoncallback=1&extras=path_alias%2Cowner_name"
     data = JSON.load(open(source))
     
     farm_id = data["photos"]["photo"][0]["farm"]
@@ -43,6 +43,14 @@ class Photo
 
   def photo_url
     @photo_url
+  end
+
+  def latitude
+    @lat
+  end
+
+  def longitude
+    @lon
   end
 
 end

@@ -1,12 +1,60 @@
+<html>
+<style>
+      #map-canvas {
+        height: 200px;
+        width: 30%;
+        margin: 0px;
+        padding: 5px;
+        display: none
+      }
+    </style>
+
+<script>
+jQuery(document).ready(function(){
+    jQuery('#show-map').click(function(){
+        jQuery('#map-canvas').toggle();
+    });
+});
+</script>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <h1 id="title">The sun is currently setting in...</h1>
       <figure>
           <img id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>">
-          <figcaption><p class="text-left"><%= @photo.location.titleize %><p><p class="text-right">by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a></p></figcaption>
+          <figcaption><p id="toggle-map" class="text-left"><%= @photo.location.titleize %><p><p class="text-right">by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a></p></figcaption>
      </figure>
     </div>
   </div>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+function initialize() {
+var latitude = <%= @photo.latitude %>;
+var longitude = <%= @photo.longitude%>;
+var markerTitle = '<%= @photo.location.titleize %>';
+  var myLatlng = new google.maps.LatLng(latitude,longitude);
+  var mapOptions = {
+    zoom: 3,
+    center: myLatlng
+  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: markerTitle
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+    <input type='button' class = "btn btn-primary btn-sm" id='show-map' value='Where?'>
+      <div id="map-canvas"></div>
+</html>
+
+
+
   

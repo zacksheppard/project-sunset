@@ -3,7 +3,7 @@ require 'json'
 
 class Photo
 
-  attr_reader :list_of_lon_lat
+  attr_reader :list_of_lon_lat, :author, :location, :photo_url, :lat, :long
 
   def initialize(list_of_lon_lat)
     @list_of_lon_lat = list_of_lon_lat
@@ -45,26 +45,6 @@ class Photo
 
   def get_lat_long
     list_of_lon_lat.sample
-  end
-
-  def author
-    @author
-  end
-
-  def location
-    @location
-  end
-
-  def photo_url
-    @photo_url
-  end
-
-  def latitude
-    @lat
-  end
-
-  def longitude
-    @lon
   end
 
 end

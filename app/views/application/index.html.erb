@@ -32,8 +32,8 @@ jQuery(document).ready(function(){
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script>
 function initialize() {
-var latitude = <%= @photo.latitude %>;
-var longitude = <%= @photo.longitude%>;
+var latitude = <%= @photo.lat %>;
+var longitude = <%= @photo.long%>;
 var markerTitle = '<%= @photo.location.titleize %>';
   var myLatlng = new google.maps.LatLng(latitude,longitude);
   var mapOptions = {

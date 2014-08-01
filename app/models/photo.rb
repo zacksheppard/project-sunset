@@ -23,25 +23,23 @@ class Photo
       source = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ec7bc063e59faf82689e51120e618d2d&tags=sunset&sort=interestingness-desc&safe_search=1&lat=#{@lat}&lon=#{@lon}&radius=32&radius_units=km&format=json&nojsoncallback=1&extras=path_alias%2Cowner_name"
       data = JSON.load(open(source))
       
-      if data["photos"]["photo"].empty? || 2 > data["photos"]["photo"].count || index = nil
+      begin
+        count = data["photos"]["photo"].count
+        index = rand(0..[20, count -1].min )
+        farm_id = data["photos"]["photo"][index]["farm"]
+        server_id = data["photos"]["photo"][index]["server"]
+        id = data["photos"]["photo"][index]["id"]
+        secret = data["photos"]["photo"][index]["secret"]
+        owner = data["photos"]["photo"][index]["owner"]
+
+        @photo_url = "http://flickr.com/#{owner}/#{id}"
+
+        @author = data["photos"]["photo"][index]["ownername"]
+
+        "http://farm#{farm_id}.staticflickr.com/#{server_id}/#{id}_#{secret}_b.jpg"
+      rescue 
         sunset_by_lat_lon
       end
-
-      count = data["photos"]["photo"].count - 1
-
-      index = rand(1..[20, count].min )
-
-      farm_id = data["photos"]["photo"][index]["farm"]
-      server_id = data["photos"]["photo"][index]["server"]
-      id = data["photos"]["photo"][index]["id"]
-      secret = data["photos"]["photo"][index]["secret"]
-      owner = data["photos"]["photo"][index]["owner"]
-
-      @photo_url = "http://flickr.com/#{owner}/#{id}"
-
-      @author = data["photos"]["photo"][index]["ownername"]
-
-      "http://farm#{farm_id}.staticflickr.com/#{server_id}/#{id}_#{secret}_b.jpg"
     end
   end
 

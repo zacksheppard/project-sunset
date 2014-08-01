@@ -3,7 +3,7 @@ require 'json'
 
 class Photo
 
-  attr_reader :list_of_lon_lat, :author, :location, :photo_url, :lat, :long
+  attr_reader :list_of_lon_lat, :author, :location, :photo_url, :lat, :lon
 
   def initialize(list_of_lon_lat)
     @list_of_lon_lat = list_of_lon_lat

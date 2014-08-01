@@ -26,17 +26,22 @@ class Photo
       begin
         count = data["photos"]["photo"].count
         index = rand(0..[20, count -1].min )
-        farm_id = data["photos"]["photo"][index]["farm"]
-        server_id = data["photos"]["photo"][index]["server"]
+        #farm_id = data["photos"]["photo"][index]["farm"]
+        #server_id = data["photos"]["photo"][index]["server"]
         id = data["photos"]["photo"][index]["id"]
-        secret = data["photos"]["photo"][index]["secret"]
+        #secret = data["photos"]["photo"][index]["secret"]
         owner = data["photos"]["photo"][index]["owner"]
 
         @photo_url = "http://flickr.com/#{owner}/#{id}"
 
         @author = data["photos"]["photo"][index]["ownername"]
-
-        "http://farm#{farm_id}.staticflickr.com/#{server_id}/#{id}_#{secret}_b.jpg"
+        #binding.pry
+        if data["photos"]["photo"][index]["url_l"] 
+          data["photos"]["photo"][index]["url_l"]
+        else
+          sunset_by_lat_lon
+        end
+        # data["photos"]["photo"][index]["url_l"] # returns photo url
       rescue 
         sunset_by_lat_lon
       end

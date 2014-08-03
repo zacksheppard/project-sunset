@@ -9,13 +9,16 @@ body {
   height: 100%;
 }
 
+#main {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .container-fluid {
   padding: 0px;
   background-color: #191919;
   vertical-align: middle;
   height: 100%;
-  padding-left: 0px;
-  padding-right: 0px;
 }
 
 footer {
@@ -31,6 +34,7 @@ footer a {
 
 .alignleft {
   float: left;
+
 }
 .alignright {
   float: right;
@@ -40,6 +44,7 @@ footer a {
   font-family: 'Marcellus SC', serif;
   font-size: 14px;
   color: #A4A4A4;
+  padding: 4px;
 }
 
 #city {

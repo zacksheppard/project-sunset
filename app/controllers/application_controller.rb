@@ -4,8 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    lat_long_list = City.currently_sunset
-    @photo = Photo.new(lat_long_list)
+    lat_lon_list = City.currently_sunset
+    @photo = Photo.new(lat_lon_list)
+  end
+
+  def full_screen
+    lat_lon_list = City.currently_sunset
+    @photo = Photo.new(lat_lon_list)
+    render 'application/full_screen'
   end
 
 end

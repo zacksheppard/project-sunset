@@ -32,11 +32,13 @@ class Photo
         @photo_url = "http://flickr.com/#{owner}/#{id}"
 
         @author = data["photos"]["photo"][index]["ownername"]
+
+          width = data["photos"]["photo"][index]["width_h"].to_i
+          height = data["photos"]["photo"][index]["height_h"].to_i
+        
         # binding.pry
-        if data["photos"]["photo"][index]["url_h"] 
-          width = data["photos"]["photo"][index]["width_h"]
-          height = data["photos"]["photo"][index]["height_h"]
-          data["photos"]["photo"][index]["url_h"] if width.to_i > height.to_i
+        if data["photos"]["photo"][index]["url_h"] && width > height
+          data["photos"]["photo"][index]["url_h"] 
         else
           puts "Misfire #{data['photos']['photo'][index]['url_h']}"
           puts "------>, Height: #{height}, Width: #{width}, #{@photo_url}"

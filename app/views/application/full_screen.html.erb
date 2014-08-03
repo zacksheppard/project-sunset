@@ -4,7 +4,7 @@
   </div>
   <div id="attribution-box">
     <p id="city" class="alignleft"><%= @photo.location.titleize %> 
-       (<%= image_tag "map_icon.svg", height: '15', width: '15' %>)</p>
+       <%= image_tag "map_icon.svg", height: '15', width: '15' %></p>
     <p id="attribution" class="alignright">by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a> on <a href="http://flickr.com">Flickr</a></p>
   </div>
   <footer>

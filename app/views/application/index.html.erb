@@ -7,11 +7,11 @@
           <input type="image"  id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>" onClick="window.location.reload()">
           <div class = "map col-lg-8 bottom" id="map-canvas"></div>
        </div>
-     </figure>
      <div style="clear: both;">
         <p class="alignleft"><%= @photo.location.titleize %></p>
         <p class="alignright">by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a></p>
       </div>
+     </figure>
     </div>
   </div>
 

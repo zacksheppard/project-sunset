@@ -10,7 +10,6 @@ class Photo
   end
 
   def sunset_by_lat_lon
-    #binding.pry
     if list_of_lat_lon.empty?
       @photo_url = "http://flickr.com/47022012@N05/11917764943"
       @author = "smileybears"
@@ -50,6 +49,7 @@ class Photo
   end
 
   def get_lat_lon
+      # binding.pry
     list_of_lat_lon.sample
   end
 

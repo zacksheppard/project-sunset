@@ -108,7 +108,7 @@ class City < ActiveRecord::Base
     end
 
     def self.currently_sunset
-        now = Time.now.utc
+        now = Time.now.utc-10000 # -10000 to offset the time bug :(
         soon = Time.now.utc + (60*20) #add twenty minutes from now in seconds
         seconds_now = self.sunset_time_to_seconds(now.hour, now.min, 0)
         seconds_soon = self.sunset_time_to_seconds(soon.hour, soon.min, 0)

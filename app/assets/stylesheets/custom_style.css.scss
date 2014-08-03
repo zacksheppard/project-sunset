@@ -13,6 +13,15 @@ body {
   margin-bottom: 20px;
 }
 
+#map-canvas {
+        height: 200px;
+        width: 100%;
+        margin: 0px;
+        padding: 5px;
+        bottom: 0px;
+        display: none;
+}
+
 #sunset {
   border:5px solid #4D4D4D;
   border-radius: 10px;

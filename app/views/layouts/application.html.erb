@@ -5,10 +5,12 @@
     <!-- Begin javascript from the top of the page.  -->
 
     <script>
-      jQuery(document).ready(function(){
-
-
-
+      $(document).ready(function(){
+        function slideToggle() {
+          $('#made-by').click(function() {
+            $('#about').slideToggle();
+          });
+        }
       });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>

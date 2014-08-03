@@ -4,8 +4,7 @@
       <h1 id="title">The sun is currently setting in...</h1>
       <figure>
         <div id="hover-map">
-          <img src="<%= @photo.sunset_by_lat_lon %>" id="sunset" class="top img-responsive center-block">
-          <!-- <input type="image"  id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>" onClick="window.location.reload()"> -->
+          <input type="image"  id="sunset" class="img-responsive center-block" src="<%= @photo.sunset_by_lat_lon %>" onClick="window.location.reload()">
           <div class = "map col-lg-8 bottom" id="map-canvas"></div>
        </div>
      </figure>

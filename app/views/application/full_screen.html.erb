@@ -6,7 +6,7 @@
     <p id="city" class="alignleft"><a target="_map" href="http://www.openstreetmap.org/?mlat=<%= @photo.lat %>&mlon=<%= @photo.lon %>#map=7/<%= @photo.lat %>/<%= @photo.lon %>"><%= @photo.location.titleize %> 
        <%= image_tag "map_icon.svg", height: '15', width: '15' %></a></p>
     <p id="attribution" class="alignright">by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a> on <a href="http://flickr.com">Flickr</a></p>
-  </div>
+  </div> 
   <div style="clear: both;"></div>
   <div class="container text-center">
     <p class="text-muted">Made with ♥ by <a href="https://github.com/mmlkrx" target="_blank">Matthias Loker</a>, <a href="https://github.com/amyrjohnson" target="_blank">Amy Johnson</a> and <a href="https://github.com/zacksheppard" target="_blank">Zack Sheppard</a> at <a href="http://flatironschool.com" target="_blank">The Flatiron School</a>.</p>

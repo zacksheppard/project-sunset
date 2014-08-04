@@ -123,7 +123,11 @@ class City < ActiveRecord::Base
     end
 
     def self.cities_to_update
-        where.not(:last_time_updated => (4.days.ago..Time.current)).limit(250)
+        where(t[:last_time_updated].in(4.days.ago..Time.current)).limit(250)
+    end
+
+    def self.t
+        self.arel_table
     end
 
 end

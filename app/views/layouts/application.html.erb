@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ProjectSunset</title>
-  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= analytics_init if Rails.env.production? %>
-</head>
-<body>
-<div class="wrapper">
-<%= yield %>
-</div>
-<footer>
-  <div class="container text-center">
-    <p class="text-muted">Made by <a href="https://github.com/mmlkrx" target="_blank">Matthias Loker</a>, <a href="https://github.com/amyrjohnson" target="_blank">Amy Johnson</a> and <a href="https://github.com/zacksheppard" target="_blank">Zack Sheppard</a> at <a href="http://flatironschool.com" target="_blank">The Flatiron School</a>.</p>
-  </div>
-</footer>
+  <head>
 
-</body>
+    <!-- Begin javascript from the top of the page.  -->
+
+    <script>
+      $(document).ready(function(){
+        function slideToggle() {
+          $('#made-by').click(function() {
+            $('#about').slideToggle();
+          });
+        }
+      });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
+
+    <title>ProjectSunset</title>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= analytics_init if Rails.env.production? %>
+  </head>
+  <body>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
+  </body>
 </html>

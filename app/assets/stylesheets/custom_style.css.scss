@@ -64,6 +64,14 @@ footer a {
   mix-blend-mode: lighten;
 }
 
+#about-text {
+  font-family: 'Marcellus SC', serif;
+  color: #FFFFFF;
+  mix-blend-mode: lighten;
+  opacity: 0.5;
+  text-shadow: 1px 1px 3px #000000;
+}
+
 #attribution-text {
   font-family: 'Marcellus SC', serif;
   font-size: 14px;

@@ -25,11 +25,11 @@
 
   <div id="city" >
     <p id="city-text" class="alignleft"><a target="_map" href="http://www.openstreetmap.org/?mlat=<%= @photo.lat %>&mlon=<%= @photo.lon %>#map=4/<%= @photo.lat %>/<%= @photo.lon %>"> <%= @photo.location.titleize %>
-       <%= image_tag "map_icon.svg", height: '15', width: '15' %></a></p>
+       <%= image_tag "map_icon.svg", height: '20', width: '20' %></a></p>
     <p id="attribution-text" class="alignleft"> photo by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a> on <a href="http://flickr.com">Flickr</a></p>
-    <p class="text-muted alignright">Sunset Somewhere by <a href="https://github.com/amyrjohnson" target="_blank">Amy J.</a>, <a href="https://github.com/mmlkrx" target="_blank">Matthias L.</a>,  and <a href="https://github.com/zacksheppard" target="_blank">Zack S.</a> </p>
+    <p id="about-text" class="text-muted alignright">Sunset Somewhere by <a href="https://github.com/amyrjohnson" target="_blank">Amy J.</a>, <a href="https://github.com/mmlkrx" target="_blank">Matthias L.</a>,  and <a href="https://github.com/zacksheppard" target="_blank">Zack S.</a> </p>
   </div>
-  
+
   <div id="about">
     <p>Sunset Somewhere lets you follow the <a href="http://www.timeanddate.com/worldclock/sunearth.html">sliver of the Earth</a> that's moving from day to night. You'll see a photo from somewhere in the world where the sun is setting right now and to see a different view of where the day is ending, just refresh.</p>
 

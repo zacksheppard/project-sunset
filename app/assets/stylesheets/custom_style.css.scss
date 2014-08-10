@@ -1,18 +1,6 @@
-html {
-  min-height:100%;
-  background-color: #191919;
-}
 
-body {
-  background-color: #191919;
-  padding: 0;
-  height: 100%;
-}
 
-#main {
-  padding-left: 0px;
-  padding-right: 0px;
-}
+
 
 .container-fluid {
   padding: 0px;
@@ -40,39 +28,53 @@ footer a {
   float: right;
 }
 
-#city, #attribution {
+#attribution {
   font-family: 'Marcellus SC', serif;
   font-size: 14px;
   color: #A4A4A4;
   padding: 4px;
+
 }
 
 #city {
-  font-size: 18px;
+  padding: 0px;
+  position:absolute;
+  bottom:0px;
+  width:100%;
+}
+
+#city-text {
+  font-size: 30px;
+  font-family: 'Lobster', cursive;
+  color: #FFFFFF;
+  padding-top: 0px;
+  padding-bottom: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  mix-blend-mode: lighten;
+  opacity: 0.5;
+  text-shadow: 1px 1px 3px #000000;
+  position:absolute;
+  bottom:0px;
+  width:100%;
+}
+
+#city-text a {
+  color: #FFFFFF;
+  mix-blend-mode: lighten;
+}
+
+#attribution-text {
+  font-family: 'Marcellus SC', serif;
+  font-size: 14px;
+  padding-bottom: 0px;
+  color: #A4A4A4;
+  padding: 4px;
 }
 
 #about {
   display: none;
 }
 
-// =======original============
-#title {
-  font-family: 'Lobster', cursive;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
 
-#map-canvas {
-        height: 200px;
-        width: 100%;
-        margin: 0px;
-        padding: 5px;
-        bottom: 0px;
-        display: none;
-}
 
-#sunset {
-  border:5px solid #4D4D4D;
-  border-radius: 10px;
-  margin: 0 auto;
-}

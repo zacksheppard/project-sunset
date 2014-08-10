@@ -48,7 +48,7 @@ footer a {
   padding-left: 0px;
   padding-right: 0px;
   mix-blend-mode: lighten;
-  opacity: 0.5;
+  opacity: 0.6;
   text-shadow: 1px 1px 3px #000000;
   position:absolute;
   bottom:0px;
@@ -61,12 +61,13 @@ footer a {
   mix-blend-mode: lighten;
 }
 
-#about-text {
+#about-text a {
   font-family: 'Marcellus SC', serif;
   color: #FFFFFF;
   mix-blend-mode: lighten;
-  opacity: 0.5;
+  opacity: 0.6;
   text-shadow: 1px 1px 3px #000000;
+  font-size: 13px;
 }
 
 #attribution-text {

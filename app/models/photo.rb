@@ -37,7 +37,7 @@ class Photo
           height = data["photos"]["photo"][index]["height_h"].to_i
         
         # binding.pry
-        if data["photos"]["photo"][index]["url_h"] && width > height
+        if data["photos"]["photo"][index]["url_h"] # && width > height
           data["photos"]["photo"][index]["url_h"] 
         else
           puts "Misfire #{data['photos']['photo'][index]['url_h']}"

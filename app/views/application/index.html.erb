@@ -21,14 +21,15 @@
     </style>
   </head>
   <body>
-
-  <div id="city" >
-    <p id="city-text" class="alignleft"><a target="_map" href="http://www.openstreetmap.org/?mlat=<%= @photo.lat %>&mlon=<%= @photo.lon %>#map=4/<%= @photo.lat %>/<%= @photo.lon %>"> <%= @photo.location.titleize %>
-       <%= image_tag "map_icon.svg", height: '20', width: '20' %></a></p>
-  </div>
-  <div id="city">
-    <p id="attribution-text" class="alignleft"> photo by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a> on <a href="http://flickr.com">Flickr</a></p>
-    <p id="about-text" class="text-muted alignright"><a href="#about" class="btn" data-toggle="modal">About Sunset Somewhere</a></p>
+  <div id="footer" class="col-md-12">
+    <div id="city" >
+      <p id="city-text" class="alignleft"><a target="_map" href="http://www.openstreetmap.org/?mlat=<%= @photo.lat %>&mlon=<%= @photo.lon %>#map=4/<%= @photo.lat %>/<%= @photo.lon %>"> <%= @photo.location.titleize %>
+         <%= image_tag "map_icon.svg", height: '20', width: '20' %></a></p>
+    </div>
+    <div id="attribution-text">
+      <p id="" class="alignleft"> photo by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a> on <a href="http://flickr.com">Flickr</a></p>
+      <p id="about-text" class="text-muted alignright"><a href="#about" class="btn" data-toggle="modal">About Sunset Somewhere</a></p>
+    </div>
   </div>
 
 

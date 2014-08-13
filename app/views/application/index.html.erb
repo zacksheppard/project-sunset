@@ -27,7 +27,7 @@
          <%= image_tag "map_icon.svg", height: '20', width: '20' %></a></p>
     </div>
     <div id="attribution-text">
-      <p id="" class="alignleft"> photo by <a href ="<%=@photo.photo_url%>"><%= @photo.author %></a> on <a href="http://flickr.com">Flickr</a></p>
+      <p id="" class="alignleft"> <a href ="<%=@photo.photo_url%>">photo by <%= @photo.author %>,</a><a href="http://flickr.com">on Flickr</a></p>
       <p id="about-text" class="text-muted alignright"><a href="#about" class="btn" data-toggle="modal">About Sunset Somewhere</a></p>
     </div>
   </div>

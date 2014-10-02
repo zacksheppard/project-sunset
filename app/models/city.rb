@@ -37,65 +37,7 @@ class City < ActiveRecord::Base
         end
     end
 
-    def self.biggest_cities
-        City.order(population: :desc).limit(1000)
-    end
 
-
-    def self.print_cities_for_seed_data
-        self.biggest_cities.each do |city|
-            if city.sunset_utc
-                puts "#{city.name},#{city.population},#{city.latitude},#{city.longitude},#{city.dst_offset},#{city.raw_offset},#{city.total_offset},#{city.timezone},#{city.sunset_utc},#{city.sunset_hour},#{city.sunset_min}"
-            end
-        end
-    end
-
-    def self.get_timezones
-        date = Time.now.to_s
-        self.biggest_cities.each do |city|
-            url = "https://maps.googleapis.com/maps/api/timezone/json?location=#{city.latitude},#{city.longitude}&timestamp=#{date}&key=AIzaSyBKiF69WTPFEm5_GO7UBahxww1S9psankk"
-            @data = JSON.load(open(url))
-
-            city.dst_offset = @data["dstOffset"]
-            city.raw_offset = @data["rawOffset"]
-            if  @data["dstOffset"] && @data["rawOffset"]
-                city.total_offset = @data["dstOffset"] + @data["rawOffset"]
-            else
-                puts "can't find offset for #{city.id}: #{city.name}!"
-            end
-            city.timezone = @data["timeZoneId"]
-            puts "done with #{city.id}: #{city.name}"
-            city.save
-        end
-    end
-
-
-
-    def self.get_sunset_times
-        time_of_api_request = Time.now
-        self.cities_to_update.each do |city|
-            puts "getting data for #{city.name}"
-            url = "http://api.wunderground.com/api/a112e57999a31e49/astronomy/q/#{city.latitude},#{city.longitude}.json"
-            @data = JSON.load(open(url))
-            
-            #"sunset"=>{"hour"=>"21", "minute"=>"16"}
-            sunset = @data["sun_phase"]["sunset"]
-            city.sunset_hour = sunset["hour"].to_i
-            city.sunset_min = sunset["minute"].to_i
-
-
-            city.sunset_utc = self.sunset_time_to_seconds(sunset["hour"].to_i, sunset["minute"].to_i, city.total_offset)
-
-            puts "#{city.sunset_utc}"
-
-            city.last_time_updated = time_of_api_request
-            city.save
-            
-            # make sure wunderground weather API limit of 10 database queries per minute is not exceeded
-            sleep 7
-
-        end
-    end
 
     def self.sunset_time_to_seconds(hours, minutes, offset)
         seconds = (hours*60*60 + minutes*60) - offset
@@ -122,12 +64,78 @@ class City < ActiveRecord::Base
         return sunset_cities
     end
 
+## Rake task methods
+
+    # To generate initial seed data 
+    def self.print_cities_for_seed_data
+        self.biggest_cities.each do |city|
+            if city.sunset_utc
+                puts "#{city.name},#{city.population},#{city.latitude},#{city.longitude},#{city.dst_offset},#{city.raw_offset},#{city.total_offset},#{city.timezone},#{city.sunset_utc},#{city.sunset_hour},#{city.sunset_min}"
+            end
+        end
+    end
+
+    # Gets biggest cities from seed data list
+    def self.biggest_cities
+        City.order(population: :desc).limit(1000)
+    end
+
+    # This is used in a rake task by heroku to update every 4 days
+    def self.get_sunset_times
+        time_of_api_request = Time.now
+        self.cities_to_update.each do |city|
+            puts "getting data for #{city.name}"
+            url = "http://api.wunderground.com/api/a112e57999a31e49/astronomy/q/#{city.latitude},#{city.longitude}.json"
+            @data = JSON.load(open(url))
+            
+            #"sunset"=>{"hour"=>"21", "minute"=>"16"}
+            sunset = @data["sun_phase"]["sunset"]
+            city.sunset_hour = sunset["hour"].to_i
+            city.sunset_min = sunset["minute"].to_i
+
+
+            city.sunset_utc = self.sunset_time_to_seconds(sunset["hour"].to_i, sunset["minute"].to_i, city.total_offset)
+
+            puts "#{city.sunset_utc}"
+
+            city.last_time_updated = time_of_api_request
+            city.save
+            
+            # make sure wunderground weather API limit of 10 database queries per minute is not exceeded
+            sleep 7
+
+        end
+    end
+
+    # Checks to see what cities need updating
     def self.cities_to_update
-        where(t[:last_time_updated].in(4.days.ago..Time.current)).limit(250)
+        where(t.limit(250)
+        # where(t[:last_time_updated].in(4.days.ago..Time.current)).limit(250)
     end
 
     def self.t
         self.arel_table
+    end
+
+## Not used 
+
+    def self.get_timezones
+        date = Time.now.to_s
+        self.biggest_cities.each do |city|
+            url = "https://maps.googleapis.com/maps/api/timezone/json?location=#{city.latitude},#{city.longitude}&timestamp=#{date}&key=AIzaSyBKiF69WTPFEm5_GO7UBahxww1S9psankk"
+            @data = JSON.load(open(url))
+
+            city.dst_offset = @data["dstOffset"]
+            city.raw_offset = @data["rawOffset"]
+            if  @data["dstOffset"] && @data["rawOffset"]
+                city.total_offset = @data["dstOffset"] + @data["rawOffset"]
+            else
+                puts "can't find offset for #{city.id}: #{city.name}!"
+            end
+            city.timezone = @data["timeZoneId"]
+            puts "done with #{city.id}: #{city.name}"
+            city.save
+        end
     end
 
 end

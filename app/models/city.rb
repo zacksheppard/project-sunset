@@ -109,7 +109,7 @@ class City < ActiveRecord::Base
 
     # Checks to see what cities need updating
     def self.cities_to_update
-        where(t[:last_time_updated].in(365.days.ago..Time.current)).limit(250)
+        where(t[:last_time_updated].gt(4.days.ago)).limit(250)
     end
 
     def self.t

@@ -15,6 +15,7 @@ namespace :db do
   end
 end
 
-task :update_sunset_time do
+desc "Update sunset times from wunderground"
+task :update_sunset_time => :environment do
   City.get_sunset_times
 end

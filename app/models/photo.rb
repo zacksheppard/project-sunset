@@ -10,6 +10,7 @@ class Photo
   end
 
   def sunset_by_lat_lon
+    # list_of_lat_lon is passed over from the controller.
     if list_of_lat_lon.empty?
       @photo_url = "http://flickr.com/47022012@N05/11917764943"
       @author = "smileybears"
@@ -23,22 +24,15 @@ class Photo
       data = JSON.load(open(source))
       
       begin
-        count = data["photos"]["photo"].count
+        photos = data["photos"]["photo"]
+        count = photos.count
         index = rand(0..[20, count -1].min )
-        id = data["photos"]["photo"][index]["id"]
-        owner = data["photos"]["photo"][index]["owner"]
-        
-
-        @photo_url = "http://flickr.com/#{owner}/#{id}"
-
-        @author = data["photos"]["photo"][index]["ownername"]
-
-          width = data["photos"]["photo"][index]["width_h"].to_i
-          height = data["photos"]["photo"][index]["height_h"].to_i
-        
-        # binding.pry
-        if data["photos"]["photo"][index]["url_h"] # && width > height
-          data["photos"]["photo"][index]["url_h"] 
+        if photos[index]["url_h"] # && width > height # removed for now
+          id = photos[index]["id"]
+          owner = photos[index]["owner"]
+          @photo_url = "http://flickr.com/#{owner}/#{id}"
+          @author = photos[index]["ownername"]
+          photos[index]["url_h"] 
         else
           puts "Misfire #{data['photos']['photo'][index]['url_h']}"
           puts "------>, Height: #{height}, Width: #{width}, #{@photo_url}"
@@ -51,7 +45,6 @@ class Photo
   end
 
   def get_lat_lon
-      # binding.pry
     list_of_lat_lon.sample
   end
 

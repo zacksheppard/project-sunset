@@ -1,25 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
+<head>
+  <title>Sunset Somewhere</title>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <link href='http://fonts.googleapis.com/css?family=Marcellus+SC' rel='stylesheet' type='text/css'>
 
-    <title>Sunset Somewhere</title>
-    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
-    <%= analytics_init if Rails.env.production? %>
-    <style type="text/css" media="screen">
-      body { 
-        background: url("<%= @photo.sunset_by_lat_lon %>") no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-      }
-    </style>
-  </head>
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= analytics_init if Rails.env.production? %>
+  <style type="text/css" media="screen">
+    body { 
+      background: url("<%= @photo.sunset_by_lat_lon %>") no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+</head>
   <body>
   <div id="footer" class="col-md-12">
     <div id="city" >
@@ -31,27 +29,23 @@
       <p id="about-text" class="text-muted alignright"><a href="#about" class="btn" data-toggle="modal">About Sunset Somewhere</a></p>
     </div>
   </div>
+  <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="AboutLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="AboutLabel">About Sunset Somewhere</h4>
+        </div>
+        <div class="modal-body">
+          <p>Sunset Somewhere lets you follow the sunset as it moves across the Earth by showing photos from places where the sun is <a href="http://www.timeanddate.com/worldclock/sunearth.html">currently setting</a>. To see a different view of where the day is ending, just refresh.</p>
 
+          <p>For more information on how the site works check out this <a href="http://io.zack.io/blog/2014/08/04/sunset-somewhere-app/">technical blog post</a>.</p>
 
-  <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">About Sunset Somewhere</h4>
-      </div>
-      <div class="modal-body">
-        <p>Sunset Somewhere lets you follow the sunset as it moves across the Earth by showing photos from places where the sun is <a href="http://www.timeanddate.com/worldclock/sunearth.html">currently setting</a>. To see a different view of where the day is ending, just refresh.</p>
+          <p><b>Created by <a href="https://github.com/mmlkrx" target="_blank">Matthias Loker</a>, <a href="https://github.com/amyrjohnson" target="_blank">Amy Johnson</a> and <a href="https://github.com/zacksheppard" target="_blank">Zack Sheppard</a> at <a href="http://flatironschool.com/">The Flatiron School</a>.</b></p>
 
-        <p>For more information on how the site works check out this <a href="http://io.zack.io/blog/2014/08/04/sunset-somewhere-app/">technical blog post</a>.</p>
-
-        <p><b>Created by <a href="https://github.com/mmlkrx" target="_blank">Matthias Loker</a>, <a href="https://github.com/amyrjohnson" target="_blank">Amy Johnson</a> and <a href="https://github.com/zacksheppard" target="_blank">Zack Sheppard</a> at <a href="http://flatironschool.com/">The Flatiron School</a>.</b></p>
-
-        <p>Location pin icon by <a href="http://www.thenounproject.com/skatakila">Ricardo Moreira</a> from the <a href="http://www.thenounproject.com">Noun Project</a>.</p>
-      </div>
+          <p>Location pin icon by <a href="http://www.thenounproject.com/skatakila">Ricardo Moreira</a> from the <a href="http://www.thenounproject.com">Noun Project</a>.</p>
         </div>
       </div>
     </div>
   </div>
-  </body>
-</html>
+</body>

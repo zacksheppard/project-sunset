@@ -8,10 +8,4 @@ class ApplicationController < ActionController::Base
     @photo = Photo.new(lat_lon_list)
   end
 
-  def full_screen
-    lat_lon_list = City.currently_sunset
-    @photo = Photo.new(lat_lon_list)
-    render 'application/full_screen'
-  end
-
 end

@@ -19,30 +19,37 @@ html, body {
   position: fixed;
   bottom: 0px;
   margin: 0;
+  padding: 7px;
   width: 100%;
-  height: 50px;
+  height: 74px;
   opacity: 0.5;
   background-color: #000;
   font-family: 'Marcellus SC', serif;
   font-size: 14px;
   color: #FFFFFF;
   text-decoration: none;
-}
-
-.location {
-  margin-top: 5px;
-  margin-left: 10px;
-  font-size: 30px;
-  font-family: 'Lobster', cursive;
   & a {
     color: #ddd;
+    &:hover {
+      color: #ddd;
+      text-decoration: none;
+    }
   }
 }
 
-.attribution {
-  margin-top: 5px;
-  margin-left: 10px;
+.footer-left {
+  float: left;
+}
+
+.footer-right {
   float: right;
+}
+.location {
+  font-size: 30px;
+  font-family: 'Lobster', cursive;
+}
+
+.attribution {
 }
 
 // .container-fluid {
@@ -52,13 +59,6 @@ html, body {
 //   height: 100%;
 // }
 
-// .alignleft {
-//   float: left;
-// }
-
-// .alignright {
-//   float: right;
-// }
 
 // #footer {
 //   position: absolute;

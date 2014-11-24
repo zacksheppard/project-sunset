@@ -11,7 +11,7 @@
   <div class="sunset-footer">
     <div class="footer-left">
       <div class="attribution">
-        <p><a href="<%= @photo.photo_url%>">photo by <%= @photo.author %>,</a><a href="http://flickr.com">on Flickr</a></p>
+        <p><a href="<%= @photo.photo_url%>">photo by <%= @photo.author %></a>, <a href="http://flickr.com">on Flickr</a></p>
       </div>
       <div class="location">
         <p><a target="_map" href="http://www.openstreetmap.org/?mlat=<%= @photo.lat %>&mlon=<%= @photo.lon %>#map=4/<%= @photo.lat %>/<%= @photo.lon %>"> <%= @photo.location.titleize %>
@@ -19,7 +19,7 @@
         </div>
       </div>
     <div class="footer-right">
-      <p id="about-text" class="text-muted alignright"><a href="#about" class="btn" data-target="#about" data-toggle="modal">About Sunset Somewhere</a></p>
+      <p><a href="#about" data-target="#about" data-toggle="modal">About Sunset Somewhere</a></p>
     </div>
   </div>
   <%= render "application/about" %>

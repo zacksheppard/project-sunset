@@ -8,32 +8,29 @@ html, body {
   width:100%; 
   height:100%;
   min-height: 100%;
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  // background-size: cover;
-  // overflow: hidden;
 }
 
 .sunset-footer {
   position: fixed;
   bottom: 0px;
-  margin: 0;
-  padding: 7px;
   width: 100%;
-  height: 74px;
-  opacity: 0.5;
-  background-color: #000;
+  height: 65px;
+  padding: 5px 10px;
+  color: #FFFFFF;
   font-family: 'Marcellus SC', serif;
   font-size: 14px;
-  color: #FFFFFF;
   text-decoration: none;
-  & a {
+  background-color: #000;
+  opacity: 0.5;
+  a {
     color: #ddd;
     &:hover {
-      color: #ddd;
+      color: #fff;
       text-decoration: none;
     }
+  }
+  p {
+    margin: 0;
   }
 }
 
@@ -43,69 +40,11 @@ html, body {
 
 .footer-right {
   float: right;
+
 }
 .location {
+  position: relative;
+  bottom: 5px;
   font-size: 30px;
   font-family: 'Lobster', cursive;
 }
-
-.attribution {
-}
-
-// .container-fluid {
-//   padding: 0px;
-//   background-color: #191919;
-//   vertical-align: middle;
-//   height: 100%;
-// }
-
-
-// #footer {
-//   position: absolute;
-//   bottom: 0;
-//   width: 100%;
-//   height: 74px;
-//   opacity: 0.5;
-//   background-color: #000000;
-// }
-
-// #attribution-text a {
-//   opacity: 0.7;
-//   position:absolute, bottom;
-//   bottom: 0;
-//   padding: 4px;
-// }
-
-// #attribution-text a:hover {
-//   opacity: 1;
-// }
-
-// #city {
-//   padding: 0px;
-//   position:absolute;
-//   bottom:0px;
-//   width:100%;
-// }
-
-// #city-text a {
-//   color: #FFFFFF;
-//   text-decoration: none;
-//   opacity: 0.6;
-//   text-shadow: 1px 1px 3px #000000;
-// }
-// #city-text a:hover, #about-text a:hover, #attribution-text:hover {
-//   color: white;
-//   text-decoration: none;
-//   opacity: 1;
-// }
-
-
-// #about-text a {
-//   font-family: 'Marcellus SC', serif;
-//   color: #FFFFFF;
-//   mix-blend-mode: lighten;
-//   opacity: 0.7;
-//   text-shadow: 1px 1px 3px #000000;
-//   font-size: 13px;
-//   z-index: 100;
-// }

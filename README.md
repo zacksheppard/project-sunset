@@ -8,5 +8,3 @@ Sunset Somewhere shows a photo of a sunset from somewhere it's currently setting
 * Flickr API for photos
 
 For more information on how the site works check out [this technical blog post](http://io.zack.io/blog/2014/08/04/sunset-somewhere-app/).
-
-

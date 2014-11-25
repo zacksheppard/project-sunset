@@ -3,7 +3,7 @@
 Sunset Somewhere shows a photo of a sunset from somewhere it's currently setting each time you [load the site](http://sunsetsomewhere.herokuapp.com/). 
 
 ## Configuration
-* Rails 4.1.4
+* Ruby 2.1.2, Rails 4.1.4
 * Weather Underground for sunset data
 * Flickr API for photos
 

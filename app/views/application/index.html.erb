@@ -1,9 +1,9 @@
-<div class="sunset" style="background: url('<%= @photo.sunset_by_lat_lon %>') no-repeat center fixed;">
+<div class="sunset" style="background: url('<%= @photo.sunset_by_lat_lon %>') no-repeat center fixed; background-size: cover;">
 </div>
 <div class="sunset-footer">
   <div class="footer-left">
     <div class="attribution">
-      <p><a href="<%= @photo.photo_url%>">photo by <%= @photo.author %></a>, <a href="http://flickr.com">on Flickr</a></p>
+      <p><a href="<%= @photo.photo_url%>">photo by <%= @photo.author %> on Flickr</a></p>
     </div>
     <div class="location">
       <p><a target="_map" href="http://www.openstreetmap.org/?mlat=<%= @photo.lat %>&mlon=<%= @photo.lon %>#map=4/<%= @photo.lat %>/<%= @photo.lon %>"> <%= @photo.location.titleize %>
